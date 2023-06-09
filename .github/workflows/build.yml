@@ -101,7 +101,14 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         with:
           name: linux-x64
-          path: cimgui/build/${{ github.event.inputs.ReleaseType || 'Release' }}/*
+          path: cimgui/build/Linux/X64/${{ github.event.inputs.ReleaseType || 'Release' }}/*
+          
+      - name: Upload Linux ${{ github.event.inputs.ReleaseType || 'Release' }}
+        uses: actions/upload-artifact@v3
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          name: linux-arm64
+          path: cimgui/build//Linux/ARM64/${{ github.event.inputs.ReleaseType || 'Release' }}/*
 
       - name: Upload MacOS ${{ github.event.inputs.ReleaseType || 'Release' }}
         uses: actions/upload-artifact@v3
